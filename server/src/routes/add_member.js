@@ -4,6 +4,7 @@ const router = express.Router();
 
 module.exports = (db) => {
 
+  //Add a new member under a specific account
   router.post('/', (req, res) => {
     console.log(req.body);
     const firstName = req.body.first_name;
@@ -14,12 +15,6 @@ module.exports = (db) => {
     const account_id = req.query.accountId;
     const hashedPassword = bcrypt.hashSync(password, 10)
     const values = [firstName, lastName, email, hashedPassword, is_primary, account_id];
-    
-
-    if (req.body.name === '' || req.body.email === '' || req.body.password === '') {
-      res.statusCode = 400;
-      return res.send('Error : Invalid username or email or password.');
-    }
     db.query(`INSERT INTO users (first_name, last_name, email, password, is_primary, account_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`, values)
       .then((data) => {
         console.log(data.rows[0]);
@@ -27,8 +22,7 @@ module.exports = (db) => {
           firstName: data.rows[0].first_name,
           user_id : data.rows[0].id,
           account_id : data.rows[0].account_id
-        }
-          
+        };
         res.json( newUser );
       })
       .catch(err => {
@@ -36,7 +30,6 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-    
   });
   return router;
 }

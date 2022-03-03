@@ -2,7 +2,8 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  //Get all contacts for a user
+
+  //Get all contacts for a specific account
   router.get("/", (req, res) => {
     const userId = req.query.userId;
     db.query(`SELECT * FROM contacts WHERE user_id = $1;`, [userId])
@@ -16,23 +17,8 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-  //Get specific contact for a user
-  router.get("/:id", (req, res) => {
-    const userId = req.query.userId;
-    const contact_id = req.params.id;
-    db.query(`SELECT * FROM contacts WHERE user_id = $1 AND id = $2;`, [ userId, contact_id])
-      .then(data => {
-        const contacts = data.rows;
-        res.json({ contacts });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
+
   //Create a new contact for a user
-  
   router.post("/", (req, res) => {
     console.log(req.body);
     const { name, phone_number, email, address } = req.body;
@@ -57,7 +43,8 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-  }) 
+  });
+
   //Update an existing contact for a user
   router.put("/", (req, res) => {
     const contact_id = req.query.contactId;
@@ -83,7 +70,8 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-  })
+  });
+
   //Delete a contact for a user
   router.delete("/:id", (req, res) =>{
     const contactId = req.params.id;
@@ -96,6 +84,6 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-  })
+  });
   return router;
 };

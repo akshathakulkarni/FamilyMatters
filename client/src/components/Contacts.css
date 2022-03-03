@@ -3,7 +3,6 @@
   font-family: arial, sans-serif;
   border:3px;
   border-style:solid; 
-  /* border-color:rgb(123, 175, 192); */
   border-color: #0f2f35b6;
 }
 .container {
@@ -21,7 +20,6 @@
   border: 3px solid #ddd;
   width: 100%;
   margin-left: 30px;
-  
 }
 
 #contacts td, #contacts th {

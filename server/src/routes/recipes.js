@@ -66,7 +66,6 @@ module.exports = (db) => {
     const recipe_id = req.query.recipeId;
     const userId = req.query.userId;
     const { name, thumbnail_photo_url, preparation_time, cooking_time, serving, ingredients, instructions, posted_by } = req.body;
-    //console.log(req.body)
     const values = [name, thumbnail_photo_url, preparation_time, cooking_time, serving, ingredients, instructions, posted_by, recipe_id, userId];
     console.log('values = ', values)
     db.query(`UPDATE recipes SET name = $1, thumbnail_photo_url = $2, preparation_time = $3, cooking_time = $4, serving = $5, ingredients = $6, instructions = $7, posted_by = $8 WHERE id = $9 AND user_id = $10 RETURNING *;`, values)

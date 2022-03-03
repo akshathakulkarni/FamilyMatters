@@ -1,8 +1,5 @@
 import React, { useEffect, Fragment, useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Modal, Button, InputGroup, FormControl, Stack } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
 import axios from "axios";
 
 export default function ContactsForm() {
@@ -10,7 +7,6 @@ export default function ContactsForm() {
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
-  const [contacts, setContact] = useState([]);
   const navigate = useNavigate();
 
   const onSubmitForm = (event) => {
@@ -94,7 +90,6 @@ export default function ContactsForm() {
                   onChange={(e) => setAddress(e.target.value)}
                 />
               </div>
-              
             </div>
 
             <div class="modal-footer">

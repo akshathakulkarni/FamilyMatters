@@ -4,18 +4,14 @@ const router = express.Router();
 
 module.exports = (db) => {
   
+  //Authenticate a user based on email and password
   router.post('/login', (req, res) => {
-    console.log(req.body);
     const email = req.body.email;
     const password = req.body.password;
     db.query(`SELECT id, first_name, password, account_id FROM users WHERE email = $1`, [email])    
-      
-    .then((data) => {
-      
+      .then((data) => {
       const first_name = data.rows[0].first_name;
-      
       const dbPass = data.rows[0].password;
-
       if (!bcrypt.compareSync(password, dbPass)) {
         return res.send('Invalid user! Please enter a valid email and password')
       } 
@@ -29,12 +25,11 @@ module.exports = (db) => {
     .catch((err) => {
       res.status(500);
       console.log(err);
-      
     });
   });
 
+  //Register a new user by creating a new account
   router.post('/register', (req, res) => {
-    console.log(req.body);
     const firstName = req.body.first_name;
     const lastName = req.body.last_name;
     const email = req.body.email;
@@ -42,7 +37,6 @@ module.exports = (db) => {
     const name = req.body.last_name; 
     const value = [name];
     const hashedPassword = bcrypt.hashSync(req.body.password, 10)
-
     if (req.body.name === '' || req.body.email === '' || req.body.password === '') {
       res.statusCode = 400;
       return res.send('Error : Invalid username or email or password.');
@@ -74,7 +68,6 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-    
   });
   return router;
 }
