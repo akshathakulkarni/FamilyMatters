@@ -78,8 +78,8 @@ module.exports = (db) => {
 
   //Remove an event (DELETE)
   router.delete('/:id', (req, res) => {                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-    
-    db.query(`DELETE FROM events WHERE id = $1`,[event_it_to_del])
+    const event_id = req.params.id;
+    db.query(`DELETE FROM events WHERE id = $1`,[event_id])
     .then((data) => {
       res.json(data.rows)
     })
