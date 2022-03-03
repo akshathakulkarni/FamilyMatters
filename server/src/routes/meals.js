@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
+
   //Get all public meals for one whole week
   router.get("/", (req, res) => {
     console.log('req.query = ', req.query)
@@ -17,11 +18,9 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-
-    
   });
   
-  //Create a meals for whole week
+  //Create a new meal
   router.post("/", (req, res) => {
     console.log('post = ', req.body);
     const day = req.body.day;
@@ -29,7 +28,6 @@ module.exports = (db) => {
     const lunch = req.body.lunch;
     const snack = req.body.snack;
     const dinner = req.body.dinner;
-    
     const accountId = req.query.accountId;
     db.query(`INSERT INTO meals (day, breakfast, lunch, snack, dinner, account_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`, [ day, breakfast, lunch, snack, dinner, accountId])
       .then(data => {
@@ -42,7 +40,8 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-  }) 
+  });
+
   //Update an existing meal 
   router.put("/", (req, res) => {
     const mealId = req.query.mealId;
@@ -67,7 +66,8 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-  })
+  });
+
   //Delete a meal 
   router.delete("/:id", (req, res) =>{
     const mealId = req.params.id;
@@ -80,6 +80,6 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-  })
+  });
   return router;
 };
