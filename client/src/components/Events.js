@@ -76,7 +76,6 @@ const Events = () => {
   }
   const deleteEvent = () => {
     const eventToDelete = currentEvent.eventId;
-    console.log(eventToDelete);
     axios.delete(`/api/events/${eventToDelete}`)
       .then(res => {
         console.log("back from delete on the server")
