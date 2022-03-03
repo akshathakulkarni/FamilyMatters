@@ -1,5 +1,4 @@
 .all-content{
-  position: fixed;
   left: 0;
   right: 0;
   margin-left: 20px;
@@ -36,26 +35,12 @@
 }
 
 .footer-image{
-  padding-top: 600px;
-  /* padding-left: 600px; */
-  /* display:flex;
-  justify-content:flex-end;
-  align-items:baseline; */
   padding-left: 400px;
   max-width: 90%;
   height: 200px;
-  /* position: absolute; */
   top: 8px;
   right: 20px;
   font-size: 30px;
-  /* filter: blur(1px);
-  -webkit-filter: blur(1px); */
-
-  /* Full height */
-  height: 100%; 
-
-  /* Center and scale the image nicely */
-  /* background-position: ; */
   background-repeat: no-repeat;
   background-size: cover;
 }
