@@ -1,7 +1,7 @@
 # Family Matters
 
 Family Matters is a project implemented with PREN stack (PostgreSQL, React, Express, Node JS). 
-This project allows users to create an account, add family members, create events, lists, reciepes, contacts and even to have a weekly meal planner. Each feature allows creating, updating and deleting. With the help of this webapp, a family can manage all of her day to day schedule all in one place. 
+This project allows users to create an account, add family members, create events, lists, recipes, contacts and even to have a weekly meal planner. Each feature allows creating, updating and deleting. With the help of this webapp, a family can manage all of her day to day schedule all in one place. 
 
 Here is a snap shot of the app's view on the browser : 
 
