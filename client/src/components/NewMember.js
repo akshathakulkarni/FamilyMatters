@@ -20,8 +20,6 @@ export default function NewMember() {
     };
 
     const accountId = localStorage.getItem("account_id");
-
-    console.log("body ===== ", body);
     axios
       .post(`/api/add_member/?accountId=${accountId}`, body)
       .then((response) => {

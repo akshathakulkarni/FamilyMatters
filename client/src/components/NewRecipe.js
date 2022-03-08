@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -29,8 +28,6 @@ export default function NewRecipe() {
 
     const userId = localStorage.getItem("user_id");
     const accountId = localStorage.getItem("account_id");
-
-    console.log("body ===== ", body);
     axios
       .post(`/api/recipes/?userId=${userId}&accountId=${accountId}`, body)
       .then((response) => {
@@ -79,7 +76,6 @@ export default function NewRecipe() {
               </div>
               <div class="form-group">
                 <label for="recipe-image" class="col-lg-2 control-label">
-                  {" "}
                   Image
                 </label>
                 <div>
@@ -178,7 +174,6 @@ export default function NewRecipe() {
               </div>
               <div class="form-group">
                 <label for="recipe-posted_by" class="col-lg-2 control-label">
-                  {" "}
                   Post by
                 </label>
                 <div>
