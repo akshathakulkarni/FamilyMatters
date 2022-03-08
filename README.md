@@ -27,9 +27,11 @@ npm start
 ```
 4. To see some preset events/lists/meals we've made, implement the seeds in this repo with psql. 
    Create a local db in psql with the following information :
-   ``` username: project
-     password: project
-     database: final ```
+   ``` 
+   username: project
+   password: project
+   database: final 
+   ```
    (or update .env with your local information)
 5. Run db file for creating DB and installing seeds with `npm run db:reset`. 
 
