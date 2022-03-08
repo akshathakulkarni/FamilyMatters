@@ -1,7 +1,11 @@
 .home-icons {
   display:flex;
-  justify-content: space-evenly;
+  position: fixed;
+  left: 0;
+  right: 0;
   padding-top: 100px;
+  padding-left: 300px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .home-icons img{
@@ -23,32 +27,20 @@
   background-size: contain;
 }
 
-#row1{
+#col1 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 40px;
-  padding-left: 450px;
+  padding-left: 150px;
 }
 
-#row2{
+#col2 {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 40px;
   padding-left: 0px;
-  padding-top: 170px;
-}
-
-.home-icons{
-  position: fixed;
-  left: 0;
-  right: 0;
-  display:flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin-left: 20px;
-  margin-right: 20px;
-  padding-left: 300px;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding-top: 100px; 
+  padding-left: 250px;
 }
