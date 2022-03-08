@@ -17,19 +17,19 @@ Here is a snap shot of the app's view on the browser :
 ## Installation Instructions
 
 1. Install dependencies with `npm install`.
-2. Run development server from Server folder 
+2. Run development server from server folder 
 ```sh
 npm run local 
 ```
-3. Run developement client from Client folder
+3. Run developement client from client folder
 ```sh
 npm start
 ```
 4. To see some preset events/lists/meals we've made, implement the seeds in this repo with psql. 
    Create a local db in psql with the following information :
-      username: project
-      password: project
-      database: final
-      (or update .env with your local information)
+   ``` username: project
+     password: project
+     database: final ```
+   (or update .env with your local information)
 5. Run db file for creating DB and installing seeds with `npm run db:reset`. 
 
