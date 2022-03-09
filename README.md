@@ -10,6 +10,7 @@ Here is a snap shot of the app's view on the browser :
 ## Screenshots
 !["Family Matters Homepage"](docs/homepage.png)
 !["Family Matters Events"](docs/events.png)
+!["Family Matters Lists"](docs/lists.png)
 !["Family Matters Recipes"](docs/recipes.png)
 !["Family Matters Contacts"](docs/contacts.png)
 !["Family Matters Meal planner"](docs/mealplanner.png)
