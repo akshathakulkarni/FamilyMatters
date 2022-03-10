@@ -1,103 +1,93 @@
-import React, {useState,useEffect} from 'react';
-import axios from 'axios';
-import ListsItemInput from './ListItemInput';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import ListsItemInput from "./ListItemInput";
 
 function ListItems(props) {
-  
-  
-  const userId = localStorage.getItem('user_id');
-  const accountId = localStorage.getItem('account_id');
-  const lists = props.lists
+  const userId = localStorage.getItem("user_id");
+  const accountId = localStorage.getItem("account_id");
+  const lists = props.lists;
 
- 
+  const [itemNames, setItemNames] = useState([]);
+  const [listId, setListId] = useState(null);
+  const [listName, setListName] = useState("");
 
-  //console.log("props------", lists)
-
-  const [itemNames, setItemNames] = useState([])
-  const [listId, setListId] = useState(null)  
-  const [listName, setListName] = useState('')
-
-//function to get items
-  const getItemNames = () => {    
-   // console.log("making api call to get list item")
-    axios.get(`/api/lists/items/?accountId=${accountId}&listId=${listId}`)
-    .then(res => {
-       const itemNameArray = res.data.lists;      
-       setItemNames(itemNameArray)
-       
-      //console.log("item res---------", itemNameArray);
-    });    
+  //function to get items
+  const getItemNames = () => {
+    axios
+      .get(`/api/lists/items/?accountId=${accountId}&listId=${listId}`)
+      .then((res) => {
+        const itemNameArray = res.data.lists;
+        setItemNames(itemNameArray);
+      });
   };
 
   useEffect(() => {
     getItemNames();
-  }, [listId])
-
+  }, [listId]);
 
   //function to delete a list
   const deleteItem = (id) => {
-    const deleteitem = axios.delete(`/api/lists/items/${id}`)
-    setItemNames(itemNames.filter(item => item.id !== id))    
-   }
+    const deleteitem = axios.delete(`/api/lists/items/${id}`);
+    setItemNames(itemNames.filter((item) => item.id !== id));
+  };
 
-   //add new item function
-   const addNewItem = (item) => {
-     setItemNames([...itemNames,item])
-   }
-   //function for adding name and id to state
+  //add new item function
+  const addNewItem = (item) => {
+    setItemNames([...itemNames, item]);
+  };
+  //function for adding name and id to state
 
-   const listNameAndId = (e) => {
-     setListId(e.target.value);
-     setListName(e.target.options[e.target.selectedIndex].text)
-     
-   }
-  
-//console.log("item names----------------------",itemNames);
+  const listNameAndId = (e) => {
+    setListId(e.target.value);
+    setListName(e.target.options[e.target.selectedIndex].text);
+  };
+
   return (
-    <>     
-    <ListsItemInput
-     listId = {listId}
-     listName = {listName}
-     addNewItem = {addNewItem}
-    />
-    <div>
-      <select 
-      className="form-select form-select-lg mb-3" 
-      aria-label=".form-select-lg example"
-      onChange={listNameAndId}
-      >
-      <option >Choose a list</option>
-      {lists.map(list => (              
-      <option key={list.id} value={list.id}>{list.name}</option>
-      ))        
-      }            
-      </select>
-    </div>
-    <table className="table my-5" id='list-table'>
-      <thead className="thead-dark">
-        <tr>
-          <th scope="col">Description</th>
-          <th scope="col">Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-         {itemNames.map(item => (
-                <tr key={item.id}>
-                <td>{item.item}</td>
-                <td>
-                <button 
-              className='btn btn-danger'
-              onClick={() => deleteItem(item.id)}
-              >Delete</button>
-                </td>
-              </tr>
-              )) 
-            }  
-      </tbody>
-    </table>
-  
-  </>
-  )
+    <>
+      <ListsItemInput
+        listId={listId}
+        listName={listName}
+        addNewItem={addNewItem}
+      />
+      <div>
+        <select
+          className="form-select form-select-lg mb-3"
+          aria-label=".form-select-lg example"
+          onChange={listNameAndId}
+        >
+          <option>Choose a list</option>
+          {lists.map((list) => (
+            <option key={list.id} value={list.id}>
+              {list.name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <table className="table my-5" id="list-table">
+        <thead className="thead-dark">
+          <tr>
+            <th scope="col">Description</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {itemNames.map((item) => (
+            <tr key={item.id}>
+              <td>{item.item}</td>
+              <td>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => deleteItem(item.id)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  );
 }
 
-export default ListItems
+export default ListItems;

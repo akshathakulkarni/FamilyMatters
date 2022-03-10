@@ -3,14 +3,8 @@ const router = express.Router();
 
 module.exports = (db) => {
 
-  //===============LISTS====================
-
-
   //Get all members for a particular account
-
-
   router.get("/", (req, res) => {
-   // const userId = req.query.userId; 
     const accountId = req.query.accountId;
     console.log(accountId)
     db.query(`SELECT DISTINCT users.first_name as first_name,users.last_name as last_name, users.email as email, users.created_at as joined_on, accounts.name as family_name      

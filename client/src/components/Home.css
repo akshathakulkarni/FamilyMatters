@@ -1,22 +1,23 @@
 .home-icons {
-  display:flex;
+  display: flex;
   position: fixed;
   left: 0;
   right: 0;
   padding-top: 100px;
   padding-left: 300px;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
-.home-icons img{
+.home-icons img {
   height: 9em;
   width: 9em;
 }
-#home-container{
+#home-container {
   padding-left: 0px;
 }
-.bgimg{
-  background-image: url('https://fox2now.com/wp-content/uploads/sites/14/2022/02/GettyImages-1271460667.jpg?w=2560&h=1440&crop=1');
+.bgimg {
+  background-image: url("https://fox2now.com/wp-content/uploads/sites/14/2022/02/GettyImages-1271460667.jpg?w=2560&h=1440&crop=1");
   width: 2200px;
   height: 930px;
   background-position: center;
@@ -41,6 +42,6 @@
   justify-content: flex-start;
   gap: 40px;
   padding-left: 0px;
-  padding-top: 100px; 
+  padding-top: 100px;
   padding-left: 250px;
 }

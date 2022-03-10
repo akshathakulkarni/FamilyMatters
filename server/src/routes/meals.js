@@ -10,7 +10,6 @@ module.exports = (db) => {
       db.query(`SELECT * FROM meals WHERE account_id = $1;`, [ accountId ])
       .then((data => {
         const mealsForWeek = data.rows;
-        //console.log('meals = ', mealsForWeek)
         return res.json({ mealsForWeek });
       }))
       .catch(err => {
