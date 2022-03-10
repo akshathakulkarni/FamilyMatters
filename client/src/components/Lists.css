@@ -1,24 +1,20 @@
-
-.list-container{
+.list-container {
   display: flex;
   justify-content: space-evenly;
-  margin-left: 100px; 
+  margin-left: 100px;
 }
-
-
 
 .list-input {
   width: 600px;
-  
 }
 
-#list-table{
+#list-table {
   width: 600px;
   border-collapse: collapse;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
- 
+
 #list-table tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
@@ -34,8 +30,4 @@
   bottom: -9999px;
   background-color: rgba(255, 255, 255, 0.2);
   z-index: -1;
-}  
-
-
-
-
+}
