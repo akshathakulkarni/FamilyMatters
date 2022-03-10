@@ -7,18 +7,10 @@ module.exports = (db) => {
   const account = 3;
   const my_event = 4;
   const event_it_to_del = 1;
-//Get all events (GET) for user (public events and the user's events)
+  //Get all events (GET) for user (public events and the user's events)
   router.get('/', (req, res) => {
     const user_id = req.query.user_id;
     const account = req.query.account_id;
-
-    // db.query(`SELECT account_id FROM users
-    //            WHERE users.id = $1`, [user_id])
-    //   .then((data) => {
-    //     account = data.rows[0].account_id;
-    //     console.log(account);
-    //   });
-
     db.query(`SELECT DISTINCT events.* FROM events join user_events on
               events.id = user_events.event_id WHERE
               user_events.account_id = $1 AND events.is_private = false OR
@@ -32,11 +24,6 @@ module.exports = (db) => {
     });
   });
 
-  // //Add a new event (GET) - new event form needs to be created
-  // router.get('/events', (req, res) => {
-
-  // });
-
   //Save the new event (POST)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
   router.post('/', (req, res) => {
     const title = req.body.title;
@@ -46,19 +33,13 @@ module.exports = (db) => {
     const user_id = req.body.user_id;
     const account_id = req.body.account_id;
     values = [title, description, startDate, location];
-    console.log("This is from the client:", values);
     db.query(`INSERT INTO events (event_name, event_description, event_date, event_address) VALUES ($1, $2, $3, $4) RETURNING *;`,values)
       .then((data) => {
         console.log(data.rows[0]);
         const event_id = data.rows[0].id;
         db.query(`INSERT INTO user_events (user_id, event_id, account_id) VALUES ($1, $2, $3) RETURNING *;`,[user_id, event_id, account_id, ])
         .then((data) => {
-          // console.log(data.rows[0]);
-          // const newUser = {
-          //   firstName: data.rows[0].first_name,
-          //   lastName: data.rows[0].last_name
-          // }
-          res.json( {title, description, startDate, location} );//event id?
+          res.json( {title, description, startDate, location} );
         })
         .catch(err => {
           res
@@ -71,9 +52,6 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-    
-    //res.json({title, description, startDate, location, event_id})
-      //res.send(req.body);
   });                                                                                                                                                                                                                            
 
   //Remove an event (DELETE)
@@ -89,10 +67,8 @@ module.exports = (db) => {
     });
   });
 
-  // //Modify an existing event (PUT)
+  //Modify an existing event (PUT)
   router.put('/', (req, res) => {
-    console.log("I'm here",req.body);
-    console.log("I'm params",req.query);
     const event_id = req.query.eventId;
     const event_name = req.body.title;
     const event_description = req.body.description;
@@ -103,7 +79,6 @@ module.exports = (db) => {
     const is_private = "";
     const event_address = req.body.location;
     const user_id = req.body.id;
-    //const event_reminder;
     const values = [event_name, event_description, event_date, event_address, event_id];
     db.query(`UPDATE events SET event_name = $1, event_description = $2, event_date = $3, event_address = $4 WHERE id = $5 RETURNING *;`, values)
       .then(data => {
